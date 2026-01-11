@@ -12,8 +12,9 @@ body {
     margin: 0;
 }
 
+/* ===== PAINEL ===== */
 .panel {
-    background: #fff;
+    background: #ffffff;
     width: 100%;
     max-width: 420px;
     padding: 25px;
@@ -33,6 +34,7 @@ h1 {
     margin-bottom: 20px;
 }
 
+/* ===== INPUTS ===== */
 input {
     width: 100%;
     padding: 12px;
@@ -42,32 +44,45 @@ input {
     font-size: 14px;
 }
 
+/* ===== BOTÃO ===== */
 button {
     background: #ff7a00;
-    color: #fff;
+    color: #ffffff;
     border: none;
     padding: 12px;
     width: 100%;
     border-radius: 6px;
     font-size: 16px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 button:hover {
     background: #e56c00;
 }
 
+/* ===== CAPTCHA (CORRIGIDO DEFINITIVO) ===== */
 .captcha {
     display: flex;
     gap: 10px;
     align-items: center;
+    justify-content: center;
+    margin: 12px 0;
 }
 
 .captcha span {
+    background: #ff7a00;
+    color: #ffffff;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 16px;
     font-weight: bold;
-    color: #ff7a00;
+    min-width: 130px;
+    text-align: center;
+    z-index: 2;
 }
 
+/* ===== RESULTADO ===== */
 #result {
     margin-top: 15px;
     font-size: 13px;
@@ -75,6 +90,7 @@ button:hover {
     word-break: break-word;
 }
 
+/* ===== INFORMAÇÕES ===== */
 .info {
     text-align: left;
     margin-top: 20px;
@@ -83,15 +99,21 @@ button:hover {
 
 .info h3 {
     color: #ff7a00;
+    margin-bottom: 5px;
 }
 
+.info ul {
+    padding-left: 18px;
+}
+
+/* ===== WHATSAPP ===== */
 .whatsapp {
     display: block;
     margin-top: 20px;
     text-decoration: none;
     background: #25D366;
-    color: #fff;
+    color: #ffffff;
     padding: 10px;
     border-radius: 6px;
     font-weight: bold;
-}
+    }
