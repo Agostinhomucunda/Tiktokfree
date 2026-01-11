@@ -10,9 +10,15 @@
 
 <div class="panel">
     <h1>🎁 Painel Free TikTok</h1>
+
+    <!-- BLOCO DE ANÚNCIO (TOPO – NÃO ATRAPALHA CLIQUES) -->
+    <div style="margin:15px 0; text-align:center;">
+        <script src="https://pl28450821.effectivegatecpm.com/2c/c8/75/2cc87518b214fafcf36067a7e53e9d72.js"></script>
+    </div>
+
     <p class="subtitle">
-        Ganhe entre <b>15 a 30 seguidores grátis</b>  
-        <br>Limite: 2 vezes por dia
+        Ganhe entre <b>500 a 1000 seguidores grátis envio até no máximo 2 horas ou 3/5 minutos</b>  
+        <br>Limite: 5 vezes por dia
     </p>
 
     <form id="form">
@@ -31,12 +37,12 @@
     <div id="result"></div>
 
     <div class="info">
-        <h3>📌 Como funciona?</h3>
+        <h3>🧯 Como funciona?</h3>
         <ul>
             <li>Digite seu @ do TikTok</li>
             <li>Resolva o captcha</li>
             <li>Receba seguidores reais</li>
-            <li>Máximo 2 envios por dia</li>
+            <li>Máximo 5 envios por dia</li>
         </ul>
     </div>
 
@@ -45,29 +51,5 @@
     </a>
 </div>
 
-<script>
-function gerarCaptcha() {
-    let a = Math.floor(Math.random() * 5) + 1;
-    let b = Math.floor(Math.random() * 5) + 1;
-    document.getElementById('captchaText').innerText = `Quanto é ${a} + ${b}?`;
-    document.getElementById('captchaAnswer').value = a + b;
-}
-gerarCaptcha();
-
-document.getElementById('form').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    let formData = new FormData(this);
-
-    let res = await fetch('send.php', {
-        method: 'POST',
-        body: formData
-    });
-
-    let text = await res.text();
-    document.getElementById('result').innerText = text;
-    gerarCaptcha();
-});
-</script>
-
-</body>
-</html>
+<!-- BLOCO DE ANÚNCIO (RODAPÉ – SEGURO) -->
+<div style="margin:20px auto; text-align:center
