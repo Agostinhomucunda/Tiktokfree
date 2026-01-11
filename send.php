@@ -7,7 +7,7 @@ $api_url = 'https://justanotherpanel.com/api/v2';
 $service_id = 8610;
 $max_requests = 2;
 $cooldown = 86400; // 24 horas
-$"`phpfile = _DIR_ . '/ips.json';
+$file = __DIR__ . '/ips.json';
 
 // ===== IP DO USUÁRIO =====
 $ip = $_SERVER['REMOTE_ADDR'];
