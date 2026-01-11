@@ -7,7 +7,7 @@ $api_url = 'https://justanotherpanel.com/api/v2';
 $service_id = 8610;
 $max_requests = 2;
 $cooldown = 86400; // 24 horas
-$file = 'ips.json';
+$"`phpfile = _DIR_ . '/ips.json';
 
 // ===== IP DO USUÁRIO =====
 $ip = $_SERVER['REMOTE_ADDR'];
@@ -21,19 +21,19 @@ $data = json_decode(file_get_contents($file), true);
 
 // ===== VERIFICA LIMITE DIÁRIO =====
 if (isset($data[$ip])) {
-    if (($now - $data[$ip]['time']) < $cooldown && $data[$ip]['count'] >= $max_requests) {
-        echo json_encode([
+     ['time'])]['count'] 
+         
             'error' => 'Limite diário atingido. Volte amanhã.'
-        ]);
-        exit;
+        
+        saída ;
     }
 
-    // Reseta após 24h
-    if (($now - $data[$ip]['time']) >= $cooldown) {
-        $data[$ip] = ['count' => 0, 'time' => $now];
-    }
-} else {
-    $data[$ip] = ['count' => 0, 'time' => $now];
+    // Reinicia após 24h
+     $data[$ip]['time']) >= $cooldown) {
+        $data[$ip] = ['count' => 0, 'time' => $now];$data[$ip] = ['count' => 0, 'time' => $now];
+    }}
+} outro { else {
+    $data[$ip] = ['count' => 0, 'time' => $now];$data[$ip] = ['count' => 0, 'time' => $now];
 }
 
 // ===== MÉTODO =====
