@@ -11,26 +11,18 @@
 <div class="panel">
     <h1>🎁 Painel Free TikTok</h1>
 
-    <!-- BLOCO DE ANÚNCIO (TOPO – NÃO ATRAPALHA CLIQUES) -->
+    <!-- ANÚNCIO TOPO -->
     <div style="margin:15px 0; text-align:center;">
         <script src="https://pl28450821.effectivegatecpm.com/2c/c8/75/2cc87518b214fafcf36067a7e53e9d72.js"></script>
     </div>
 
     <p class="subtitle">
-        Ganhe entre <b>500 a 1000 seguidores grátis envio até no máximo 2 horas ou 3/5 minutos</b>  
-        <br>Limite: 5 vezes por dia
+        Ganhe entre <b>500 a 1000 seguidores grátis</b><br>
+        Envio rápido • Limite diário
     </p>
 
     <form id="form">
         <input type="text" name="username" placeholder="@usuario_tiktok" required>
-
-        <div class="captcha">
-            <span id="captchaText"></span>
-            <input type="number" name="captcha" placeholder="Resposta" required>
-        </div>
-
-        <input type="hidden" name="captcha_answer" id="captchaAnswer">
-
         <button type="submit">🚀 Enviar Seguidores</button>
     </form>
 
@@ -40,9 +32,9 @@
         <h3>🧯 Como funciona?</h3>
         <ul>
             <li>Digite seu @ do TikTok</li>
-            <li>Resolva o captcha</li>
-            <li>Receba seguidores reais</li>
-            <li>Máximo 5 envios por dia</li>
+            <li>Clique em enviar</li>
+            <li>Pedido é criado automaticamente</li>
+            <li>Limite diário aplicado</li>
         </ul>
     </div>
 
@@ -51,5 +43,25 @@
     </a>
 </div>
 
-<!-- BLOCO DE ANÚNCIO (RODAPÉ – SEGURO) -->
-<div style="margin:20px auto; text-align:center
+<!-- ANÚNCIO RODAPÉ -->
+<div style="margin:20px auto; text-align:center;">
+    <script src="https://pl28450821.effectivegatecpm.com/2c/c8/75/2cc87518b214fafcf36067a7e53e9d72.js"></script>
+</div>
+
+<script>
+document.getElementById('form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    let formData = new FormData(this);
+
+    let res = await fetch('send.php', {
+        method: 'POST',
+        body: formData
+    });
+
+    let text = await res.text();
+    document.getElementById('result').innerText = text;
+});
+</script>
+
+</body>
+    </html>
