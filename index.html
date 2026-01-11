@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel Free TikTok</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div class="panel">
+    <h1>🎁 Painel Free TikTok</h1>
+    <p class="subtitle">
+        Ganhe entre <b>15 a 30 seguidores grátis</b>  
+        <br>Limite: 2 vezes por dia
+    </p>
+
+    <form id="form">
+        <input type="text" name="username" placeholder="@usuario_tiktok" required>
+
+        <div class="captcha">
+            <span id="captchaText"></span>
+            <input type="number" name="captcha" placeholder="Resposta" required>
+        </div>
+
+        <input type="hidden" name="captcha_answer" id="captchaAnswer">
+
+        <button type="submit">🚀 Enviar Seguidores</button>
+    </form>
+
+    <div id="result"></div>
+
+    <div class="info">
+        <h3>📌 Como funciona?</h3>
+        <ul>
+            <li>Digite seu @ do TikTok</li>
+            <li>Resolva o captcha</li>
+            <li>Receba seguidores reais</li>
+            <li>Máximo 2 envios por dia</li>
+        </ul>
+    </div>
+
+    <a class="whatsapp" href="https://wa.me/573180664760" target="_blank">
+        💬 Falar com ADM
+    </a>
+</div>
+
+<script>
+function gerarCaptcha() {
+    let a = Math.floor(Math.random() * 5) + 1;
+    let b = Math.floor(Math.random() * 5) + 1;
+    document.getElementById('captchaText').innerText = `Quanto é ${a} + ${b}?`;
+    document.getElementById('captchaAnswer').value = a + b;
+}
+gerarCaptcha();
+
+document.getElementById('form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    let formData = new FormData(this);
+
+    let res = await fetch('send.php', {
+        method: 'POST',
+        body: formData
+    });
+
+    let text = await res.text();
+    document.getElementById('result').innerText = text;
+    gerarCaptcha();
+});
+</script>
+
+</body>
+</html>

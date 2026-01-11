@@ -1,0 +1,97 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #ff7a00, #ffb347);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.panel {
+    background: #fff;
+    width: 100%;
+    max-width: 420px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+h1 {
+    color: #ff7a00;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #444;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+button {
+    background: #ff7a00;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #e56c00;
+}
+
+.captcha {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.captcha span {
+    font-weight: bold;
+    color: #ff7a00;
+}
+
+#result {
+    margin-top: 15px;
+    font-size: 13px;
+    color: #333;
+    word-break: break-word;
+}
+
+.info {
+    text-align: left;
+    margin-top: 20px;
+    font-size: 13px;
+}
+
+.info h3 {
+    color: #ff7a00;
+}
+
+.whatsapp {
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+    background: #25D366;
+    color: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+}
