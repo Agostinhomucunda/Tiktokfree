@@ -13,27 +13,37 @@ $file = __DIR__ . '/ips.json';
 $ip = $_SERVER['REMOTE_ADDR'];
 $now = time();
 
-// ===== LÊ O ARQUIVO =====
+// ===== GARANTE QUE O ARQUIVO EXISTE =====
 if (!file_exists($file)) {
-    file_put_contents($file, json_encode([]));
+    file_put_contents($file, '{}');
 }
-$data = json_decode(file_get_contents($file), true);
+@chmod($file, 0666);
 
-// ===== VERIFICA LIMITE DIÁRIO =====
+// ===== LÊ O ARQUIVO =====
+$data = json_decode(file_get_contents($file), true);
+if (!is_array($data)) {
+    $data = [];
+}
+
+// ===== CONTROLE DE LIMITE POR IP =====
 if (isset($data[$ip])) {
-     ['time'])]['count'] 
-         
+
+    // Se ainda estiver dentro das 24h e já atingiu o limite
+    if (($now - $data[$ip]['time']) < $cooldown && $data[$ip]['count'] >= $max_requests) {
+        echo json_encode([
             'error' => 'Limite diário atingido. Volte amanhã.'
-        
-        saída ;
+        ]);
+        exit;
     }
 
-    // Reinicia após 24h
-     $data[$ip]['time']) >= $cooldown) {
-        $data[$ip] = ['count' => 0, 'time' => $now];$data[$ip] = ['count' => 0, 'time' => $now];
-    }}
-} outro { else {
-    $data[$ip] = ['count' => 0, 'time' => $now];$data[$ip] = ['count' => 0, 'time' => $now];
+    // Se passaram 24h, reseta
+    if (($now - $data[$ip]['time']) >= $cooldown) {
+        $data[$ip] = ['count' => 0, 'time' => $now];
+    }
+
+} else {
+    // Primeiro acesso desse IP
+    $data[$ip] = ['count' => 0, 'time' => $now];
 }
 
 // ===== MÉTODO =====
@@ -64,23 +74,22 @@ $quantity = $quantidades[array_rand($quantidades)];
 
 // ===== DADOS PARA API =====
 $post_data = [
-    'key' => $api_key,
-    'action' => 'add',
+    'key'     => $api_key,
+    'action'  => 'add',
     'service' => $service_id,
-    'link' => 'https://www.tiktok.com/@' . $username,
-    'quantity' => $quantity
+    'link'    => 'https://www.tiktok.com/@' . $username,
+    'quantity'=> $quantity
 ];
 
 // ===== ENVIO =====
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $api_url);
+$ch = curl_init($api_url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
 $response = curl_exec($ch);
 curl_close($ch);
 
-// ===== ATUALIZA IP =====
+// ===== ATUALIZA CONTADOR =====
 $data[$ip]['count']++;
 file_put_contents($file, json_encode($data));
 
