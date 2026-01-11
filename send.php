@@ -5,46 +5,6 @@ header('Content-Type: application/json');
 $api_key = '616d2690f7d47890968bb794a1beb54e';
 $api_url = 'https://justanotherpanel.com/api/v2';
 $service_id = 8610;
-$max_requests = 2;
-$cooldown = 86400; // 24 horas
-$file = __DIR__ . '/ips.json';
-
-// ===== IP DO USUÁRIO =====
-$ip = $_SERVER['REMOTE_ADDR'];
-$now = time();
-
-// ===== GARANTE QUE O ARQUIVO EXISTE =====
-if (!file_exists($file)) {
-    file_put_contents($file, '{}');
-}
-@chmod($file, 0666);
-
-// ===== LÊ O ARQUIVO =====
-$data = json_decode(file_get_contents($file), true);
-if (!is_array($data)) {
-    $data = [];
-}
-
-// ===== CONTROLE DE LIMITE POR IP =====
-if (isset($data[$ip])) {
-
-    // Se ainda estiver dentro das 24h e já atingiu o limite
-    if (($now - $data[$ip]['time']) < $cooldown && $data[$ip]['count'] >= $max_requests) {
-        echo json_encode([
-            'error' => 'Limite diário atingido. Volte amanhã.'
-        ]);
-        exit;
-    }
-
-    // Se passaram 24h, reseta
-    if (($now - $data[$ip]['time']) >= $cooldown) {
-        $data[$ip] = ['count' => 0, 'time' => $now];
-    }
-
-} else {
-    // Primeiro acesso desse IP
-    $data[$ip] = ['count' => 0, 'time' => $now];
-}
 
 // ===== MÉTODO =====
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -88,10 +48,6 @@ curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
 $response = curl_exec($ch);
 curl_close($ch);
-
-// ===== ATUALIZA CONTADOR =====
-$data[$ip]['count']++;
-file_put_contents($file, json_encode($data));
 
 // ===== RESPOSTA =====
 echo $response;
