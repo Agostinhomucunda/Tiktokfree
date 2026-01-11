@@ -12,21 +12,15 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// ===== ANTI BOT =====
-$captcha = intval($_POST['captcha'] ?? 0);
-$captcha_answer = intval($_POST['captcha_answer'] ?? 0);
-
-if ($captcha !== $captcha_answer) {
-    echo json_encode(['error' => 'Captcha incorreto']);
-    exit;
-}
-
 // ===== USUÁRIO =====
 $username = trim($_POST['username'] ?? '');
 if (empty($username)) {
     echo json_encode(['error' => 'Usuário inválido']);
     exit;
 }
+
+// remove @ se o usuário colocar
+$username = ltrim($username, '@');
 
 // ===== QUANTIDADE ALEATÓRIA =====
 $quantidades = [15, 20, 30];
